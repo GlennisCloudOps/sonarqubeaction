@@ -1,4 +1,4 @@
-name: "sonarscan-dotnet"
+name: "sonarqubeaction"
 description: "SonarScanner for .NET 5 with pull request decoration support."
 author: "GlennisSolutions"
 
