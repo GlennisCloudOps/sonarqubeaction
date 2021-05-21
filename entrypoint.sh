@@ -114,9 +114,9 @@ sonar_end_cmd="/dotnet-sonarscanner end /d:sonar.login=\"${SONAR_TOKEN}\""
 # Build dotnet build command
 #-----------------------------------
 dotnet_build_cmd="dotnet build"
-# if [ -n "$INPUT_DOTNETBUILDARGUMENTS" ]; then
-#     dotnet_build_cmd="$dotnet_build_cmd $INPUT_DOTNETBUILDARGUMENTS"
-# fi
+if [ -n "$INPUT_DOTNETBUILDARGUMENTS" ]; then
+    dotnet_build_cmd="$dotnet_build_cmd $INPUT_DOTNETBUILDARGUMENTS"
+fi
 
 #-----------------------------------
 # Build dotnet test command
