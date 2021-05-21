@@ -76,9 +76,6 @@ echo "INPUT_SONARHOSTNAME: $INPUT_SONARHOSTNAME"
 # Build local Docker image
 # docker build -t sonarscan-dotnet .
 # Execute Docker container
-# docker run --name sonarscan-dotnet --workdir /github/workspace --rm -e INPUT_SONARPROJECTKEY -e INPUT_SONARPROJECTNAME -e INPUT_SONARORGANIZATION -e INPUT_DOTNETBUILDARGUMENTS -e INPUT_DOTNETTESTARGUMENTS -e INPUT_DOTNETDISABLETESTS -e INPUT_SONARBEGINARGUMENTS -e INPUT_SONARHOSTNAME -e SONAR_TOKEN -e GITHUB_EVENT_NAME -e GITHUB_REPOSITORY -e GITHUB_REF -e GITHUB_HEAD_REF -e GITHUB_BASE_REF -v "/var/run/docker.sock":"/var/run/docker.sock" -v $(pwd):"/github/workspace" sonarscan-dotnet
-
-#docker run --name sonarscan-dotnet --workdir /github/workspace --rm -e INPUT_SONARPROJECTKEY='ppmtest' -e INPUT_SONARPROJECTNAME='ppmtest' -e INPUT_SONARHOSTNAME='https://sonarqubegitactions.azurewebsites.net' -e SONAR_TOKEN='8cf2f48006fecf5284c6c14f88dcdda35b47ffb7' -e VSS_NUGET_EXTERNAL_FEED_ENDPOINTS='{"endpointCredentials": [{"endpoint":"https://pkgs.dev.azure.com/GlennisSolutions/SaaS/_packaging/Glennis_Nuget/nuget/v3/index.json", "username":"Saikiran.Potti@glennissolutions.com", "password":"ubea3ubj5wdkigubhm7e34sl5tg73vezozo2t4f5fd6eg4haixqq"}]}' -v "/var/run/docker.sock":"/var/run/docker.sock" -v $(pwd):"/github/workspace" sonarqube-dotnet
 
 
 #-----------------------------------
