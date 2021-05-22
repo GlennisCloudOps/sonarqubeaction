@@ -135,6 +135,9 @@ echo "Shell commands"
 echo "sonar_begin_cmd: $sonar_begin_cmd"
 sh -c "$sonar_begin_cmd"
 
+#Run just for debug path
+echo pwd
+
 #Run dotnet build command
 echo "dotnet_build_cmd: $dotnet_build_cmd"
 sh -c "${dotnet_build_cmd}"
