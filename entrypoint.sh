@@ -135,8 +135,8 @@ echo "Shell commands"
 echo "sonar_begin_cmd: $sonar_begin_cmd"
 sh -c "$sonar_begin_cmd"
 
-#Run just for debug path
-echo $PWD
+#Print contents in current directory
+echo *
 
 #Run dotnet build command
 echo "dotnet_build_cmd: $dotnet_build_cmd"
