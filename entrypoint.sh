@@ -89,21 +89,21 @@ sonar_begin_cmd="/dotnet-sonarscanner begin /k:\"${INPUT_SONARPROJECTKEY}\" /n:\
 #     sonar_begin_cmd="$sonar_begin_cmd $INPUT_SONARBEGINARGUMENTS"
 # fi
 # Check Github environment variable GITHUB_EVENT_NAME to determine if this is a pull request or not. 
-# if [[ $GITHUB_EVENT_NAME == 'pull_request' ]]; then
-#     # Sonarqube wants these variables if build is started for a pull request
-#     # Sonarcloud parameters: https://sonarcloud.io/documentation/analysis/pull-request/
-#     # sonar.pullrequest.key	                Unique identifier of your PR. Must correspond to the key of the PR in GitHub or TFS. E.G.: 5
-#     # sonar.pullrequest.branch	            The name of your PR Ex: feature/my-new-feature
-#     # sonar.pullrequest.base	            The long-lived branch into which the PR will be merged. Default: master E.G.: master
-#     # sonar.pullrequest.github.repository	SLUG of the GitHub Repo (owner/repo)
+if [[ $GITHUB_EVENT_NAME == 'pull_request' ]]; then
+    # Sonarqube wants these variables if build is started for a pull request
+    # Sonarcloud parameters: https://sonarcloud.io/documentation/analysis/pull-request/
+    # sonar.pullrequest.key	                Unique identifier of your PR. Must correspond to the key of the PR in GitHub or TFS. E.G.: 5
+    # sonar.pullrequest.branch	            The name of your PR Ex: feature/my-new-feature
+    # sonar.pullrequest.base	            The long-lived branch into which the PR will be merged. Default: master E.G.: master
+    # sonar.pullrequest.github.repository	SLUG of the GitHub Repo (owner/repo)
 
-#     # Extract Pull Request numer from the GITHUB_REF variable
-#     PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
+    # Extract Pull Request numer from the GITHUB_REF variable
+    PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
 
-#     # Add pull request specific parameters in sonar scanner
-#     sonar_begin_cmd="$sonar_begin_cmd /d:sonar.pullrequest.key=$PR_NUMBER /d:sonar.pullrequest.branch=$GITHUB_HEAD_REF /d:sonar.pullrequest.base=$GITHUB_BASE_REF /d:sonar.pullrequest.github.repository=$GITHUB_REPOSITORY /d:sonar.pullrequest.provider=github"
+    # Add pull request specific parameters in sonar scanner
+    sonar_begin_cmd="$sonar_begin_cmd /d:sonar.pullrequest.key=$PR_NUMBER /d:sonar.pullrequest.branch=$GITHUB_HEAD_REF /d:sonar.pullrequest.base=$GITHUB_BASE_REF /d:sonar.pullrequest.github.repository=$GITHUB_REPOSITORY /d:sonar.pullrequest.provider=github"
 
-# fi
+fi
 
 #-----------------------------------
 # Build Sonarscanner end command
@@ -134,9 +134,6 @@ echo "Shell commands"
 #Run Sonarscanner .NET Core "begin" command
 echo "sonar_begin_cmd: $sonar_begin_cmd"
 sh -c "$sonar_begin_cmd"
-
-#Print contents in current directory
-echo *
 
 #Run dotnet build command
 echo "dotnet_build_cmd: $dotnet_build_cmd"
